@@ -1,0 +1,55 @@
+import time
+import math
+from random import randint
+i = 0
+sig = 0
+limit = 190
+t = 0
+tim = 0
+#array = [1,1,1,0,1,0,1,0,1,0,1,0,0,0,1]
+array = [0]*limit
+newarray = [0]*limit
+#array[limit/2] = 1
+array[limit/2] = 1
+while 1:
+	list1 = ''.join(str(e) for e in array)
+	print 'X',list1
+	newarray = [0]*limit
+	i = 0
+
+	for i in range(0,len(array)-2):		
+		if array[i] == 1 and array[i+1] == 1 and array[i+2] == 1:
+			newarray[i+1] = 0
+		if array[i] == 1 and array[i+1] == 1 and array[i+2] == 0:
+			newarray[i+1] = 1
+		if array[i] == 1 and array[i+1] == 0 and array[i+2] == 1:
+			newarray[i+1] = 0
+		if array[i] == 1 and array[i+1] == 0 and array[i+2] == 0:
+			newarray[i+1] = 1
+		if array[i] == 0 and array[i+1] == 1 and array[i+2] == 1:
+			newarray[i+1] = 1
+		if array[i] == 0 and array[i+1] == 1 and array[i+2] == 0:
+			newarray[i+1] = 0
+		if array[i] == 0 and array[i+1] == 0 and array[i+2] == 1:
+			newarray[i+1] = 1
+		if array[i] == 0 and array[i+1] == 0 and array[i+2] == 0:
+			newarray[i+1] = 0
+		i += 1
+
+	if t < tim:
+		t += 1
+		#print t
+	else:
+		tim = randint(0,randint(0,randint(0, 100)))
+		#print tim
+		newarray[randint(0, limit-1)] = 1
+		if randint(0,randint(0,100)) < 5:
+			newarray[randint(0, limit-1)] = 1
+		if randint(0,randint(0,100)) < 2:
+			newarray[randint(0, limit-1)] = 1
+
+		t = 0
+
+	array = newarray
+	sig += 1
+	time.sleep(0.05)
